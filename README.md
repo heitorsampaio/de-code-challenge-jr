@@ -6,7 +6,7 @@
 Frist you need to clone this repo, open your terminal and type:
 
 ```bash
-$ git clone https://github.com/heitorsampaio/de-code-challenge-jr.git && cd de-code-challege-jr
+$ git clone https://github.com/heitorsampaio/de-code-challenge-jr.git && cd de-code-challenge-jr
 ```
 
 Now certify that you are inside the project folder:
