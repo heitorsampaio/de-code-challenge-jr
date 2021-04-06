@@ -28,8 +28,8 @@ conn = db.connect()
 
 def create_table():
     conn = psycopg2.connect(host="localhost", database="levee_test", user="postgres",
-                         password="postgres", port="5431")
-    
+                            password="postgres", port="5431")
+
     queries = """
     CREATE TABLE IF NOT EXISTS jobs(
         partnerId SERIAL PRIMARY KEY,
@@ -38,7 +38,7 @@ def create_table():
         ExpiresAt DATE,
         openPositionAmnt INTEGER     
     )
-    """, 
+    """,
     """
     CREATE TABLE IF NOT EXISTS category(
         id SERIAL PRIMARY KEY,
@@ -75,7 +75,7 @@ categories_df.to_sql('category', con=conn, if_exists='replace', index=False)
 # In[10]:
 
 
-def create_pandas_table(sql_query, database = conn):
+def create_pandas_table(sql_query, database=conn):
     table = pd.read_sql_query(sql_query, database)
     return table
 
@@ -128,14 +128,11 @@ print(f'The number of open positions per category name is: {open_positions}')
 date = datetime.today()
 
 df['ExpiresAt'] = pd.to_datetime(df['ExpiresAt'])
-expired_positions = (df.loc[df['ExpiresAt'] < date].sort_values('ExpiresAt').iloc[-3:])
+expired_positions = (
+    df.loc[df['ExpiresAt'] < date].sort_values('ExpiresAt').iloc[-3:])
 print(f'The last three jobs that expired is: \n{expired_positions}')
 
 
 # ![thatsall](https://media.giphy.com/media/upg0i1m4DLe5q/giphy.gif "thatsall")
 
 # In[ ]:
-
-
-
-
