@@ -1,1 +1,24 @@
+version: '3'
+services:
+    postgres:
+        image: postgres:12.3-alpine
+        container_name: levee_test_postgres
+        environment:
+            POSTGRES_PASSWORD: postgres
+            POSTGRES_USER: postgres
+            POSTGRES_DB: levee_test
+        volumes:
+            - postgres_volume:/var/lib/postgresql/data
+        ports:
+            - 5431:5432
+    adminer:
+        image: adminer
+        container_name: levee_test_adminer
+        links:
+            - postgres
+        ports:
+            - 8888:8080
 
+volumes:
+  postgres_volume:
+    driver: local
